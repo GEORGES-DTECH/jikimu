@@ -1,0 +1,33 @@
+
+{
+    "name": "test provida",
+    "short_name" : "test provida",
+    "start_url": "./",
+    "scope" : "/",
+    "theme_color": "#cccccc",
+    "background_color": "#cccccc",
+    "display": "fullscreen",
+    "lang": "en-US",
+
+    "icons": [
+        {
+            "src": "/static/images/512pn.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose":"maskable any"
+        }
+        ,
+
+        {
+            "src": "/static/images/192pn.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose":"maskable any"
+        }
+      
+
+
+    ]
+
+
+}

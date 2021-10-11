@@ -1,0 +1,263 @@
+
+{%extends 'index.html'%}
+{% load static %}
+{%load crispy_forms_tags%}
+{%load humanize%}
+{%block content%}
+<div class="parent-div" id="form">
+
+    <div class="loancard align-items-center" style="background: snow; color: #0e4D92;">
+        <div class="card-header" style="background: floralwhite;">
+            <img src="{% static 'images/512pn.png '%}" height="80" width="80" class="d-inline-block-alighn-top" />  <b style="font-size: x-large;">PROVIDA AFRICA LIMITED </b>
+            <div>Thika town,p.o box 2359 -00900,kiambu</div>
+            <div>Telephone 0202078812/0717808681,Email providaafrica@gmail.com</div>
+            <div>Website,providaafrica.com</div>
+            <b style="font-size: large;">GUARANTORS COMMITMENT TO {{transaction.borrowers_full_name}} LOAN OF {{transaction.borrowers_loan_amount}} Ksh</b> 
+          
+          </div>
+    <div class="card-body" style="background: snow;">
+       
+                               
+    I (guarantor)<b class="fields">...{{transaction.guarantors_name}}.... </b> (nickname),<b class="fields">...{{transaction.guarantor_nick_name}}...</b>,id.no <b class="fields">...{{transaction.guarantors_id_number}}...</b>  wish to guarantee Mr.Mrs.Miss (Clients name)
+    <b class="fields">....{{transaction.borrowers_full_name}}....</b> a loan of maximum Kshs <b class="fields">...{{transaction.borrowers_loan_amount}}... </b> .I also wish to state that i will repay the loan on behalf of the loanee
+    named above,should any problems with the repayment arise for whatever reason,and whatsoever i have given out a cheque leaf under the Name  <b class="fields">...{{transaction.guarantors_name}} ...</b> Amount <b class="fields">....{{transaction.guarantors_amount }}....</b> to
+    be banked which should serve as principle if loanee fails to pay. <br>
+    I further authorize PROVIDA AFRICA LIMITED to auction the items listed below ,and any other including Business stock incase i am unable to pay the loan on behalf of the said principal loanee named above.
+
+
+   
+  <br>
+  <br>
+  <div class="table-responsive">
+    <table class="table table-sm table-bordered loan-table">
+        <thead>
+          <tr>
+            <th scope="col" style="color: #0e4D92; font-size: small;">No</th>
+            <th scope="col" style="color: #0e4D92; font-size: small;">ITEMS</th>
+            <th scope="col" style="color: #0e4D92; font-size: small;">SERIAL.NO</th>
+            <th scope="col" style="color: #0e4D92; font-size: small;">YEAR BOUGHT</th>
+            <th scope="col" style="color: #0e4D92; font-size: small;">ESTIMATED VALUE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" style="color: #483C32; font-size: small;">1</th>
+            <td style="color: #483C32; font-size: small;">{{transaction.items1}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items1_serial_number}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items1_purchase_year}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items1_estimated_value}}</td>
+          </tr>
+          <tr>
+            <th scope="row" style="color: #483C32; font-size: small;">2</th>
+            <td style="color: #483C32; font-size: small;">{{transaction.items2}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items2_serial_number}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items2_purchase_year}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items2_estimated_value}}</td>
+          </tr>
+          <tr>
+            <th scope="row" style="color: #483C32; font-size: small;">3</th>
+            <td style="color: #483C32; font-size: small;">{{transaction.items3}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items3_serial_number}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items3_purchase_year}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items3_estimated_value}}</td>
+          </tr>
+          <tr>
+            <th scope="row" style="color: #483C32; font-size: small;">4</th>
+            <td style="color: #483C32; font-size: small;">{{transaction.item4}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.item4_serial_number}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.item4_purchase_year}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.item4_estimated_value}}</td>
+          </tr>
+          <tr>
+            <th scope="row" style="color: #483C32; font-size: small;">5</th>
+            <td style="color: #483C32; font-size: small;">{{transaction.items5}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items5_serial_number}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items5_purchase_year}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items5_estimated_value}}</td>
+          </tr>
+          <tr>
+            <th scope="row" style="color: #483C32; font-size: small;">6</th>
+            <td style="color: #483C32; font-size: small;">{{transaction.items6}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items6_serial_number}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items6_purchase_year}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items6_estimated_value}}</td>
+          </tr>
+          <tr>
+            <th scope="row" style="color: #483C32; font-size: small;">7</th>
+            <td style="color: #483C32; font-size: small;">{{transaction.items7}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items7_serial_number}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items7_purchase_year}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items7_estimated_value}}</td>
+          </tr>
+          <tr>
+            <th scope="row" style="color: #483C32; font-size: small;">8</th>
+            <td style="color: #483C32; font-size: small;">{{transaction.items8}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items8_serial_number}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items8_purchase_year}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.items8_estimated_value}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>  
+    
+    <div class="table-responsive">
+      <table class="table table-sm table-bordered loan-table">
+          <thead>
+            <tr>
+              <th scope="col" style="color: #0e4D92; font-size: small;">GUARANTOR NAME</th>
+              <th scope="col" style="color: #0e4D92; font-size: small;">GUARANTOR ID</th>
+             
+              <th scope="col" style="color: #0e4D92; font-size: small;">RESIDENCE</th>
+              <th scope="col" style="color: #0e4D92; font-size: small;">CONTACT</th>
+              <th scope="col" style="color: #0e4D92; font-size: small;">SIGNATURE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            
+             
+            <td style="color: #483C32; font-size: small;">{{transaction.guarantors_name}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.guarantors_id_number}}</td>
+            
+            <td style="color: #483C32; font-size: small;">{{transaction.guarantors_residence}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.guarantors_contact}}</td>
+             
+             
+                 <td>
+             
+              <img src="{{transaction.upload_signature.url}}" class="card-img-top" alt="" width="200" height="50">
+             </td>
+            </tr>
+           
+          </tbody>
+        </table>
+      </div>
+
+    
+      <div class="table-responsive">
+        <table class="table table-sm table-bordered loan-table">
+            <thead>
+              <tr>
+                <th scope="col" style="color: #0e4D92; font-size: small;">APPRAISED BY</th>
+               
+                <th scope="col" style="color: #0e4D92; font-size: small;">DATE</th>
+                <th scope="col" style="color: #0e4D92; font-size: small;">CONTACT</th>
+                <th scope="col" style="color: #0e4D92; font-size: small;">SIGNATURE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              
+               
+              <td style="color: #483C32; font-size: small;">....</td>
+              <td style="color: #483C32; font-size: small;">....</td>
+              <td style="color: #483C32; font-size: small;">....</td>
+              <td style="color: #483C32; font-size: small;">....</td>
+               
+               
+                
+              </tr>
+             
+            </tbody>
+          </table>
+        </div>
+  
+      
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered loan-table">
+              <thead>
+                <tr>
+                  <th scope="col" style="color: #0e4D92; font-size: small;">APPROVED BY</th>
+                 
+                  <th scope="col" style="color: #0e4D92; font-size: small;">DATE</th>
+                  <th scope="col" style="color: #0e4D92; font-size: small;">CONTACT</th>
+                  <th scope="col" style="color: #0e4D92; font-size: small;">SIGNATURE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                
+                 
+                <td style="color: #483C32; font-size: small;">....</td>
+                <td style="color: #483C32; font-size: small;">....</td>
+                <td style="color: #483C32; font-size: small;">....</td>
+                <td style="color: #483C32; font-size: small;">....</td>
+                 
+                 
+                  
+                </tr>
+               
+              </tbody>
+            </table>
+          </div>
+    
+      <b>Page 1</b>
+
+    </div>
+    
+   </div>    
+
+</div>
+
+<br>
+
+<div class="parent-div">
+<div class="card mycard">
+  <b style="color: #483C32">Select action below</b>
+  <small style="color: #483C32">If guaranting  the same borrower subsequent times,edit the page and change the amounts.</small>
+     <div class="btn-group" role="group" aria-label="Basic outlined example">
+  
+    
+     <a href="{%url 'update-guarantor' transaction.id%}" class="btn btn-outline-dark btn-sm ">Edit this page</a>
+     <a href="{%url 'guarantors'%}" class="btn btn-outline-primary btn-sm ">Home</a>
+
+     <button class="btn btn-success btn-sm" onclick="printreport()" id="printbutton">
+      Download form</button>
+     
+       
+  </div>
+</div>
+</div>
+
+
+
+<script type="text/javascript">
+    
+    function printreport(){
+        const report = document.getElementById("form")
+        
+        const mybutton = document.getElementById("printbutton")
+        mybutton.innerText ="Downloading"
+
+        idNumber = '{{transaction.guarantors_id_number}}'
+        html2pdf() 
+        .from(report)
+        .save(idNumber + "guarantor form")
+
+        setTimeout(function(){ 
+            mybutton.innerText ="Download finished" 
+            
+        
+        
+        }, 7000);
+
+
+        setTimeout(function(){ 
+            location.reload()
+            
+        
+        
+        }, 6000);
+
+
+    
+      }      
+
+
+
+</script>
+
+
+
+
+{%endblock%}

@@ -1,0 +1,27 @@
+{%extends 'index.html'%}
+
+
+{%block content%}
+
+
+<div class="parent-div">
+    <div class="card" style="width: 22rem;">
+        <form method="POST" enctype="multipart/form-data" >
+            {%csrf_token%}
+            <fieldset class="form-group">
+                <legend class="border-bottom md-4"> <h3 style="color: black;">Delete photo!</h3> </legend>
+            <h3>Are you sure you want to delete photo ?</h3>
+            
+            </fieldset>
+            <div>
+                <button class="btn btn-outline-danger " type="submit">Yes,delete</button>
+                <a class="btn btn-outline-secondary ml-4" href="{%url 'photos'%}">cancel</a>
+
+            </div>
+        </form>
+
+
+
+    </div>
+</div>
+{%endblock content%}

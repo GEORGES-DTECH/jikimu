@@ -1,0 +1,293 @@
+
+{%extends 'index.html'%}
+{% load static %}
+{%load crispy_forms_tags%}
+{%load humanize%}
+{%block content%}
+<div class="parent-div">
+
+  <div class="loancard" style="background: snow; color: #0e4D92;" id="form">
+      <div class="card-header align-items-center" style="background: floralwhite;">
+          <img src="{% static 'images/512pn.png '%}" height="80" width="80" class="d-inline-block-alighn-top" />  <b style="font-size: x-large;">PROVIDA AFRICA LIMITED </b>
+          <div>Thika town,p.o box 2359 -00900,kiambu</div>
+          <div>Telephone 0202078812/0717808681,Email providaafrica@gmail.com</div>
+          <div>Website,providaafrica.com</div>
+          <b style="font-size: large;">CLIENT'S COMMITMENT</b> 
+          <b style="font-size: small;">(SERIAL NO. {{transaction.referrence}})</b>
+
+      </div>
+  <div class="card-body" style="background: snow;">
+     
+                             
+  I ,<b class="fields">{{transaction.full_name}} </b>         (nickname),<b class="fields">{{transaction.nick_name}}</b>,id.no <b class="fields">{{transaction.id_number}}</b>  is a residence of
+  <b style="color: #483C32;">{{transaction.place_of_residence}}</b> and works in <b class="fields">{{transaction.work_place}} </b>.I have taken a loan of ksh <b class="fields">{{transaction.loan_amount|intcomma}} </b> (<b class="fields">{{transaction.loan_amount_in_words}} </b> )
+  with PROVIDA AFRICA LIMITED on <b class="fields">{{transaction.lending_date|date:'j b,y'}}</b> i will repay back the said principle <b class="fields">{{transaction.loan_amount|intcomma}}</b> interest <b class="fields">{{transaction.interest_due|intcomma}}</b> 
+  total <b class="fields">{{transaction.total_due|intcomma}} </b> on  or before <b class="fields">{{transaction.due_date|date:'j b,y'}}(in {{transaction.choose_loan_period}})</b> (NB no rollover of the principal whatsoever) ,
+  I have authorised PROVIDA AFRICA LIMITED to auction all my items listed below and any other items and  business stock to
+  service all outstanding balance,action will be taken immediately if i fail to service the loan on time.Recovery will include a penalty
+  of Ksh 500 per day in arrears without seeking further instruction whatsoever.I also give PROVIDA AFRICA LIMITED or appointed AUCTIONEER
+  DEBT COLLECTOR express authority to lock the doors of my business premises and that of my house to safeguard PROVIDA AFRICA LIMITED interest
+  and to prevent possible disposal of business stock or household items which guarantee the loan for me.
+  Referred by <b class="fields">.. {{transaction.referree_name}} ..</b> contact <b class="fields">.. {{transaction.referree_contact}}.. </b> work place  <b class="fields"> ..{{transaction.referree_work_place}} ..</b>
+<br>
+<br>
+<div class="table-responsive">
+  <table class="table table-sm table-bordered loan-table">
+      <thead>
+        <tr>
+          <th scope="col" style="color: #0e4D92; font-size: small;">No</th>
+          <th scope="col" style="color: #0e4D92; font-size: small;">ITEMS</th>
+          <th scope="col" style="color: #0e4D92; font-size: small;">SERIAL.NO</th>
+          <th scope="col" style="color: #0e4D92; font-size: small;">YEAR BOUGHT</th>
+          <th scope="col" style="color: #0e4D92; font-size: small;">ESTIMATED VALUE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row" style="color: #483C32; font-size: small;">1</th>
+          <td style="color: #483C32; font-size: small;">{{transaction.item1}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item1_serial_number}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item1_purchase_year}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item1_estimated_value}}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="color: #483C32; font-size: small;">2</th>
+          <td style="color: #483C32; font-size: small;">{{transaction.item2}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item2_serial_number}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item2_purchase_year}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item2_estimated_value}}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="color: #483C32; font-size: small;">3</th>
+          <td style="color: #483C32; font-size: small;">{{transaction.item3}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item3_serial_number}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item3_purchase_year}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item3_estimated_value}}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="color: #483C32; font-size: small;">4</th>
+          <td style="color: #483C32; font-size: small;">{{transaction.item4}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item4_serial_number}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item4_purchase_year}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item4_estimated_value}}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="color: #483C32; font-size: small;">5</th>
+          <td style="color: #483C32; font-size: small;">{{transaction.item5}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item5_serial_number}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item5_purchase_year}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item5_estimated_value}}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="color: #483C32; font-size: small;">6</th>
+          <td style="color: #483C32; font-size: small;">{{transaction.item6}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item6_serial_number}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item6_purchase_year}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item6_estimated_value}}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="color: #483C32; font-size: small;">7</th>
+          <td style="color: #483C32; font-size: small;">{{transaction.item7}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item7_serial_number}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item7_purchase_year}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item7_estimated_value}}</td>
+        </tr>
+        <tr>
+          <th scope="row" style="color: #483C32; font-size: small;">8</th>
+          <td style="color: #483C32; font-size: small;">{{transaction.item8}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item8_serial_number}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item8_purchase_year}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.item8_estimated_value}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>  
+  
+<div class="table-responsive">
+  <table class="table table-sm table-bordered loan-table">
+      <thead>
+        <tr>
+          <th scope="col" style="color: #0e4D92; font-size: small;">INSTALLMENTS</th>
+          <th scope="col" style="color: #0e4D92; font-size: small;">CHEQUE NAME</th>
+          <th scope="col" style="color: #0e4D92; font-size: small;">CHEQUE NO</th>
+          <th scope="col" style="color: #0e4D92; font-size: small;">CHEQUE AMOUNT</th>
+          <th scope="col" style="color: #0e4D92; font-size: small;">SIGN</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row" style="color: #483C32; font-size: small;">1</th>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+        </tr>
+        <tr>
+          <th scope="row" style="color: #483C32; font-size: small;">2</th>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+        </tr>
+        <tr>
+          <th scope="row" style="color: #483C32; font-size: small;">3</th>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+        </tr>
+        <tr>
+          <th scope="row" style="color: #483C32; font-size: small;">4</th>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+        </tr>
+        <tr>
+          <th scope="row" style="color: #483C32; font-size: small;">5</th>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+        </tr>
+        <tr>
+          <th scope="row" style="color: #483C32; font-size: small;">6</th>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+        </tr>
+        <tr>
+          <th scope="row" style="color: #483C32; font-size: small;">7</th>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+        </tr>
+        <tr>
+          <th scope="row" style="color: #483C32; font-size: small;">8</th>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+          <td style="color: #483C32; font-size: small;"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div> 
+  
+  
+ <div class="table-responsive">
+  <table class="table table-sm table-bordered loan-table">
+      <thead>
+        <tr>
+          <th scope="col" style="color: #0e4D92; font-size: small;">CLIENTS NAME</th>
+          <th scope="col" style="color: #0e4D92; font-size: small;">PHONE1</th>
+          <th scope="col" style="color: #0e4D92; font-size: small;">PHONE2</th>
+          <th scope="col" style="color: #0e4D92; font-size: small;">I.D NO</th>
+          <th scope="col" style="color: #0e4D92; font-size: small;">SIGNATURE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th style="color: #483C32; font-size: small;">{{transaction.full_name}}</th>
+          <td style="color: #483C32; font-size: small;">{{transaction.phone1}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.phone2}}</td>
+          <td style="color: #483C32; font-size: small;">{{transaction.id_number}}</td>
+          <td style="color: #483C32; font-size: small;">
+            
+            <img src="{{transaction.attach_signature.url}}" class="card-img-top" alt="" width="200" height="50">
+          
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+    <b>Page 1</b>
+
+  </div>
+  
+ </div>    
+
+</div>
+
+<br>
+
+<div class="parent-div">
+<div class="card mycard">
+  <b style="color: #483C32">Select action below</b>
+     <div class="btn-group" role="group" aria-label="Basic outlined example">
+  
+      <a href="{%url 'staffupdate' transaction.id%}" class="btn btn-outline-primary btn-sm mybuttons">Add loan security</a>
+   
+      <a href="{%url 'personalupdate' transaction.id%}" class="btn btn-outline-primary btn-sm mybuttons">Edit this page</a>
+     
+     <button class="btn btn-success btn-sm" onclick="printreport()" id="printbutton">Download form</button>
+     
+       
+  </div>
+</div>
+</div>
+
+<br>
+<div class="parent-div">
+  <div class="card mycard">
+    <div class="btn-group" role="group" aria-label="Basic outlined example">
+    
+    <a href="{%url 'detailspage2' transaction.id%}" class="btn btn-outline-dark btn-sm ">Next section</a>
+
+    
+    <a href="{%url 'loans'%}" class="btn btn-outline-primary btn-sm ">Home</a>
+         
+    </div>
+  </div>
+  </div>
+
+
+
+<script type="text/javascript">
+    
+    function printreport(){
+        const report = document.getElementById("form")
+        
+        const mybutton = document.getElementById("printbutton")
+        mybutton.innerText ="Downloading"
+
+        idNumber = '{{transaction.id_number}}'
+        html2pdf() 
+        .from(report)
+        .save(idNumber + "Loan form")
+
+        setTimeout(function(){ 
+            mybutton.innerText ="Download finished" 
+            
+        
+        
+        }, 7000);
+
+
+        setTimeout(function(){ 
+            location.reload()
+            
+        
+        
+        }, 6000);
+
+
+    
+        
+        
+        
+        
+    
+        
+        
+ }
+ 
+
+</script>
+
+
+
+
+{%endblock%}

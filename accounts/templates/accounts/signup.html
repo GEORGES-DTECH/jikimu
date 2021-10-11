@@ -1,0 +1,76 @@
+{%extends 'index.html'%}
+{%load crispy_forms_tags%}
+{%load static%}
+{%block content%}
+
+
+
+    <div class="parent-div">
+        <div class="card" style="background: white;"> 
+            <div class="card-header" style=" background-color: #4267B2; color: snow;">
+            
+            <h2>Register</h2> 
+            
+            </div>
+            <div class="card-body">
+                <small>To install the app use chrome(highly recommended),firefox or safari browser.</small>
+                <hr>
+                    <form method="POST">
+                      
+                        {%csrf_token%}
+                        <fieldset class="form-group">
+                            {{form|crispy}}
+                            
+                        </fieldset>
+                       <hr>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="submit"><b>Register</b></button>
+                           
+                        </div>
+                    </form>
+                        
+                        <div class="border-top pt-3">
+                            <small class="text-muted">
+                                Already have an account? <a class="ml-2" href="{%url 'login'%}">Login</a>
+                            
+
+                            </small>
+
+                        </div>
+            </div>
+        </div> 
+    </div>
+ <br>
+
+
+    <div class="parent-div">
+        <div class="card">
+            <div class="card-header">
+
+                <img src="{% static 'images/512pn.png '%}" height="100" width="100" class="d-inline-block-alighn-top" />  <b style="font-size: x-large;">PROVIDA AFRICA LIMITED </b>
+                <div>Thika town,p.o box 2359 -00900,kiambu</div>
+                <div>Telephone 0202078812/0717808681,Email providaafrica@gmail.com</div>
+               
+                 
+            </div>  
+        </div>
+    </div>
+
+        
+{%endblock content%}
+
+
+       
+
+
+    
+
+
+
+
+
+
+
+
+
+

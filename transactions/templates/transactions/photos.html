@@ -1,0 +1,212 @@
+{%extends  'index.html'%}
+{%load humanize%}
+{%block content%}
+{%load crispy_forms_tags%}
+<!-- STAFF SECTION -->
+{%if user.is_staff%}     
+
+<div class="card">
+    <form action="{%url 'search-photo'%}"  method="get" class="d-flex">
+
+
+        <input type="text" class="form-control" placeholder="search by id number/name" name="q"  aria-describedby="button-addon2" aria-label="Search">
+    
+     <button class="btn btn-primary btn-sm" type="submit" id="button-addon2">Search</button>
+    
+   </form>
+
+   
+  </div>
+  
+   <hr>
+   <div class="btn-group" role="group" aria-label="Basic outlined example">
+    <a href="" class="btn btn-outline-dark btn-sm disabled" aria-disabled="true"><b style="color: black;">PHOTOS</b></a>
+    <a href="{%url 'upload'%}" class="btn btn-primary btn-sm">Upload photos</a>
+    <a href="" class="btn btn-outline-primary btn-sm disabled" aria-disabled="true"></a>
+    <a href="{%url 'photos'%}" class="btn btn-outline-primary btn-sm mybuttons">Refresh</a>
+    <a href="{%url 'loans'%}" class="btn btn-outline-primary btn-sm">Back to loans</a>
+ 
+</div>
+
+<br>
+<br>
+   
+  
+       <table class="table  table-sm table-bordered table-hover tablestyle">
+
+               <thead>
+               <tr>
+                   <th scope="col">Name</th>
+                   <th scope="col">Id.no</th>
+                   <th scope="col">View</th>
+                   <th scope="col">Edit </th>
+                
+                  
+                </tr>
+               </thead>
+               <tbody>
+               <tr>
+               {%for photo in photos%}
+              
+            
+                <td>{{photo.full_name}}</td>
+                <td>{{photo.id_number}}</td>
+               
+                <td><a href="{%url 'photodetail' photo.id%}" class="btn btn-outline-dark btn-sm" style="font-size: small;">View</a></td>
+                <td><a href="{%url 'uploadupdate' photo.id%}" class="btn btn-outline-dark btn-sm" style="font-size: small;">Edit</a></td>
+                
+
+               
+              
+               </tr>
+               
+              
+
+           </tbody>
+         
+           {%endfor%}
+       </table>
+ 
+  
+   
+   <br>
+
+ <nav aria-label="Page navigation example">
+   <ul class="pagination">
+       {%if is_paginated%}
+
+       {%if page_obj.has_previous%}
+   
+
+               <li class="page-item"><a href="?page=1" class="page-link">first</a></li>
+               <li class="page-item"><a href="?page={{page_obj.previous_page_number}}"class="page-link">previous</a></li>
+
+               {%endif%}
+
+               {%for num in page_obj.paginator.page_range%}
+
+               {%if page_obj.number == num%}
+
+               <li class="page-item"><a href="?page={{num}}" class="page-link">{{num}}</a></li>
+               {%elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3'%} <li class="page-item"><a href="?page={{num}}"
+                   
+                   class="page-link">{{num}}</a></li>
+
+                   {%endif%}
+                   {%endfor%}
+
+                   {%if page_obj.has_next%}
+
+               <li class="page-item"><a href="?page={{page_obj.next_page_number}}"  class="page-link">next</a></li>
+                   
+               <li class="page-item"><a href="?page={{page_obj.paginator.num_pages}}"
+                   class="page-link">last</a></li>
+
+                   {%endif%}
+
+                   {%endif%}
+       </ul>
+</nav>
+
+ <hr>
+
+
+
+
+
+
+          <!-- CLIENTS SECTION============= -->
+           {%else%}
+
+           
+
+         
+           <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <a href="" class="btn btn-outline-dark btn-sm disabled" aria-disabled="true"><b style="color: black;">PHOTOS</b></a>
+            <a href="{%url 'upload'%}" class="btn btn-primary btn-sm">Upload photos</a>
+            <a href="" class="btn btn-outline-primary btn-sm disabled" aria-disabled="true"></a>
+            <a href="{%url 'photos'%}" class="btn btn-outline-primary btn-sm mybuttons">Refresh</a>
+            <a href="{%url 'loans'%}" class="btn btn-outline-primary btn-sm">Back loans</a>
+         
+        </div>
+        
+        <br>
+        <hr>
+        
+       
+            <table class="table  table-sm table-bordered table-hover tablestyle">
+     
+                    <thead>
+                    <tr>
+                       <th scope="col">Name</th>
+                        <th scope="col">Id.no</th>
+                        <th scope="col">View </th>
+                        <th scope="col">Edit </th>
+                      
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    {%for photo in photos%}
+                    {%if photo.id_number == user.id_number%}
+                 
+                     <td>{{photo.full_name}}</td>
+                     <td>{{photo.id_number}}</td>
+                     <td><a href="{%url 'photodetail' photo.id%}" class="btn btn-outline-dark btn-sm" style="font-size: small;">View</a></td>
+                     <td><a href="{%url 'uploadupdate' photo.id%}" class="btn btn-outline-dark btn-sm" style="font-size: small;">Edit</a></td>
+
+                   
+
+                     
+                    
+                    </tr>
+                    </tbody>
+               {%endif%}
+                {%endfor%}
+            </table>
+            <br>
+        
+         <nav aria-label="Page navigation example">
+           <ul class="pagination">
+               {%if is_paginated%}
+        
+               {%if page_obj.has_previous%}
+           
+        
+                       <li class="page-item"><a href="?page=1" class="page-link">first</a></li>
+                       <li class="page-item"><a href="?page={{page_obj.previous_page_number}}"class="page-link">previous</a></li>
+        
+                       {%endif%}
+        
+                       {%for num in page_obj.paginator.page_range%}
+        
+                       {%if page_obj.number == num%}
+        
+                       <li class="page-item"><a href="?page={{num}}" class="page-link">{{num}}</a></li>
+                       {%elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3'%} <li class="page-item"><a href="?page={{num}}"
+                           
+                           class="page-link">{{num}}</a></li>
+        
+                           {%endif%}
+                           {%endfor%}
+        
+                           {%if page_obj.has_next%}
+        
+                       <li class="page-item"><a href="?page={{page_obj.next_page_number}}"  class="page-link">next</a></li>
+                           
+                       <li class="page-item"><a href="?page={{page_obj.paginator.num_pages}}"
+                           class="page-link">last</a></li>
+        
+                           {%endif%}
+        
+                           {%endif%}
+               </ul>
+        </nav>
+       <hr>
+      
+
+
+{%endif%}  
+
+{%endblock%}
+    

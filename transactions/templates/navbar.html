@@ -1,0 +1,91 @@
+{% load static %}
+
+<div class="container">
+    <nav class="navbar navbar-custom navbar-expand-sm navbar-dark  fixed-top">
+      <div class="container-fluid">
+   {%if user.is_authenticated%}
+        <a class="navbar-brand" href="{% url 'loans'%}">
+          
+          <h4 style="color: snow;">Provida</h4>
+
+         <a  href="{% url 'help'%}" style="color:snow" class="btn btn-outline-danger btn-sm" ><b>Help videos</b> </a>
+
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="my-1 mx-2 close" style="font-size:smaller; color:snow">menu</span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto ">
+    {%if user.is_staff%}
+    <hr style="background-color: snow;">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{%url 'loans'%}" style="color:snow" ><b>Home</b> </a>
+      </li>
+
+      <hr style="background-color: snow;">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{%url 'change_password'%}"  ><b style="color:snow">Change password</b> </a>
+      </li>
+
+      <hr style="background-color: snow;">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{%url 'edit_profile'%}" style="color:snow" ><b>Edit profile</b> </a>
+      </li>
+
+
+
+
+    <hr style="background-color: snow;">
+   
+    
+    {%if user.is_admin%}
+    <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="https://www.providaafrica.com/root/transactions/transaction/" class="" style="color: snow;"><b>Admin</b></a>
+    </li>
+    {%endif%}
+    <hr>
+    {%if user.is_superuser%}
+    <li class="nav-item">
+       <a class="nav-link active" aria-current="page" href="https://www.pythonanywhere.com/user/providaafrica/webapps/#tab_id_www_providaafrica_com" class="" style="color: snow;"><b>Host server</b></a>
+    </li>
+       {%endif%}
+       
+     <hr style="background-color: snow;">
+     <li class="nav-item">
+       <a class="nav-link active" aria-current="page" href="{%url 'logout'%}" style="color:snow" ><b>Logout</b> </a>
+     </li>
+    {%else%}
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="{%url 'loans'%}" style="color:snow" ><b>Home</b> </a>
+    </li>
+
+    <hr style="background-color: snow;">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="{%url 'change_password'%}" style="color:snow" ><b>Change password</b> </a>
+    </li>
+
+    <hr style="background-color: snow;">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="{%url 'edit_profile'%}" style="color:snow" ><b>Edit profile</b> </a>
+    </li>
+
+   <hr style="background-color:snow;">
+
+   <hr style="background-color: snow;">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="{%url 'logout'%}" style="color:snow" ><b>Logout</b> </a>
+    </li>
+
+  {%endif%}
+
+
+
+{%endif%}
+
+        </ul>
+
+        </div>
+      </div>
+
+    </nav>

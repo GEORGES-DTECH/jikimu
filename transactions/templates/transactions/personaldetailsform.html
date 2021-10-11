@@ -1,0 +1,61 @@
+{%extends 'index.html'%}
+{%load crispy_forms_tags%}
+
+{%block content%}
+
+
+<div class="parent-div">
+    <div class="card">
+        <div class="card-header" style="background-color: #4267B2; color: snow;">
+            <b>Enter your personal details</b>
+        </div>
+
+        <div class="card-body">
+            <small style="color: red;">Attaching signature is mandatory to avoid loan error.</small> <br>
+            <small>Sign on a piece of paper,take a photo and attach.</small> <br>
+            <small>Make sure the signature photo is visible before attaching.</small><br>
+            <small>Attached signature and id signature must match.</small> <hr>
+            
+            <form method="POST" enctype="multipart/form-data">
+                {%csrf_token%}
+                <fieldset class="form-group">
+
+
+
+                    {{form|crispy}}
+                   
+                   
+               
+                </fieldset>
+                <br>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary btn-block mybuttons " type="submit" id="submitbutton" onclick="feedback()">Submit information
+                        </button>
+
+                        <br>
+                        <a href="{%url 'loans'%}" class="btn btn-outline-primary  btn-block mybuttons"><b>Cancel</b></a>
+            
+
+                </div>
+            </form>
+
+
+        </div>
+
+        <script type="text/javascript">
+    
+          function feedback(){
+              
+              const mybutton = document.getElementById("submitbutton")
+              mybutton.innerText ="Submitting"
+           
+        
+          }
+        
+        
+        </script>        
+            
+{%endblock%}
+
+
+

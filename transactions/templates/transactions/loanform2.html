@@ -1,0 +1,232 @@
+
+{%extends 'index.html'%}
+{% load static %}
+{%load crispy_forms_tags%}
+{%load humanize%}
+{%block content%}
+<div class="parent-div" id="form">
+
+    <div class="loancard" style="background: snow; color: #0e4D92;">
+        <div class="card-header align-items-center" style="background: floralwhite;">
+   
+            <b style="font-size: small;">(SERIAL NO. {{transaction.referrence}})</b>
+        </div>
+    <div class="card-body" style="background: snow;">
+       
+                               
+    Name <b style="color: #483C32;">....{{transaction.full_name}}.... </b>      marital status,....<b style="color: #483C32;">{{transaction.marital_status}}....</b> depedants <b style="color: #483C32;">....{{transaction.depedants}}....</b>  name of the employer
+    
+    <b style="color: #483C32;">....{{transaction.employers_name}}....</b> location <b style="color: #483C32;">....{{transaction.work_location}}.... </b> .Position <b style="color: #483C32;">....{{transaction.work_position}}.... </b>  supervisors name, ....<b style="color: #483C32;">....{{transaction.supervisors_name}}....</b> ....
+    
+    office contact <b style="color: #483C32;">....{{transaction.office_contact}}....</b> supervisors contact <b style="color: #483C32;">{{transaction.supervisors_contact}}</b> business name <b style="color: #483C32;">....{{transaction.business_name}}....</b>
+    
+    daily income <b style="color: #483C32;">....{{transaction.daily_income}}....</b> daily expense <b style="color: #483C32;">....{{transaction.daily_expense}}....</b> ,net income <b style="color: #483C32;">....{{transaction.net_income}}....</b>
+    <H4>SPOUSES INFORMATION</H4>
+    Name <b style="color: #483C32;">....{{transaction.spouses_name}}....</b> work place <b style="color: #483C32;">....{{transaction.spouses_work_location}}....</b> position <b style="color: #483C32;">....{{transaction.spouses_work_position}}....</b>
+    
+    business name <b style="color: #483C32;">....{{transaction.spouses_business_name}}....</b> business location <b style="color: #483C32;">....{{transaction.spouses_business_location}}....</b> next of kin <b style="color: #483C32;">....{{transaction.next_of_kin}}....</b> next of kin contact <b style="color: #483C32;">....{{transaction.next_of_kin_contact}}....</b> 
+    
+    relation to the applicant <b style="color: #483C32;">....{{transaction.relation_to_applicant}}....</b> contact <b style="color: #483C32;">....{{transaction.spouses_contacts}}....</b>
+    
+    <h4>RESIDENCE DETAILS</h4>
+   
+    Applicant current residence <b style="color: #483C32;">....{{transaction.place_of_residence}}....</b> permanent/temporary <b style="color: #483C32;">{{transaction.permanent_or_temporary}}</b> rural home <b style="color: #483C32;">....{{transaction.rural_residence}}....</b>
+   
+    and to prevent possibe disposal of business stock or household items which garantee the loan for me.
+    Referred by <b style="color: #483C32;">.. {{transaction.referree_name}} ..</b> contact <b style="color: #483C32;">.. {{transaction.referree_contact}}.. </b> work place  <b style="color: #483C32;"> ..{{transaction.referree_work_place}} ..</b>
+    
+    <h4>PARENT DETAILS</h4>
+    Fathers name <b style="color: #483C32;">.... {{transaction.fathers_name}}.... </b> fathers contact <b style="color: #483C32;">.... {{transaction.fathers_contact}}.... </b> mothers name <b style="color: #483C32;">.... {{transaction.mothers_name}} ....</b> mothers contact <b style="color: #483C32;">....{{transaction.mothers_contact}}....</b>
+    
+    <H4>MOTOR VEHICLE DETAILS</H4>
+  
+<div class="table-responsive">
+    <table class="table table-sm table-bordered loan-table">
+        <thead>
+          <tr>
+            <th scope="col" style="color: #0e4D92; font-size: small;">TYPE</th>
+            <th scope="col" style="color: #0e4D92; font-size: small;">MODEL</th>
+            <th scope="col" style="color: #0e4D92; font-size: small;">REGISTRATION</th>
+            <th scope="col" style="color: #0e4D92; font-size: small;">COLOR</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th style="color: #483C32; font-size: small;">{{transaction.motor_vehicle_type}}</th>
+            <td style="color: #483C32; font-size: small;">{{transaction.motor_vehicle_model}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.motor_vehicle_registration_number}}</td>
+            <td style="color: #483C32; font-size: small;">{{transaction.motor_vehicle_color}}</td>
+            
+          </tr>
+         
+        </tbody>
+      </table>
+    </div>
+
+    I  <b style="color: #483C32;">.... {{transaction.full_name}}..... </b> id number <b style="color: #483C32;">.... {{transaction.id_number}}.... </b> is very much aware that 
+    PROVIDA AFRICA LIMITED will not be party to any local agreement between me and another person (third party) where i take a loan from PROVIDA AFRICA LIMITED on 
+    behalf of another person without informing PROVIDA AFRICA LIMITED of such dealings which is illegal.I am aware that PROVIDA AFRICA LIMITED will pursue me until i clear
+    the loan as the signed agreement between me and PROVIDA AFRICA LIMITED.
+
+    <H4>CREDIT REFERENCE BUREAU(C.R.B)</H4>
+
+    I <b style="color: #483C32;">.... {{transaction.full_name}}.... </b> id number <b style="color: #483C32;"> ....{{transaction.id_number}}.... </b> have authorize PROVIDA AFRICA LIMITED
+    to share my credit information and access my credit profile from credit reference bureau. <br> <br>
+   </div>
+
+  
+
+   <div class="table-responsive">
+    <table class="table table-sm table-bordered loan-table">
+        <thead>
+          <tr>
+            <th scope="col" style="color: #0e4D92; font-size: small;">CLIENTS NAME</th>
+           
+            <th scope="col" style="color: #0e4D92; font-size: small;">SIGNATURE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+          
+            <td style="color: #483C32; font-size: small;">{{transaction.full_name}}</td>
+              
+           <td>
+            <img src="{{transaction.attach_signature.url}}" class="card-img-top" alt="" width="200" height="50">
+           </td>
+          </tr>
+         
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-sm table-bordered loan-table">
+          <thead>
+            <tr>
+              <th scope="col" style="color: #0e4D92; font-size: small;">APPRAISED BY</th>
+             
+              <th scope="col" style="color: #0e4D92; font-size: small;">SIGNATURE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            
+              <td style="color: #483C32; font-size: small;">{{transaction.appraised_by}}</td>
+                
+             <td>
+            ....
+             </td>
+            </tr>
+           
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-sm table-bordered loan-table">
+            <thead>
+              <tr>
+                <th scope="col" style="color: #0e4D92; font-size: small;">APPROVED BY</th>
+               
+                <th scope="col" style="color: #0e4D92; font-size: small;">SIGNATURE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              
+                <td style="color: #483C32; font-size: small;">{{transaction.approved_by}}</td>
+                  
+               <td>
+              ....
+               </td>
+              </tr>
+             
+            </tbody>
+          </table>
+        </div>
+   
+
+
+
+    
+    <b>Page 2</b>
+
+    </div>
+    
+   </div>    
+
+</div>
+
+<br>
+<br>
+
+<div class="parent-div">
+<div class="card mycard">
+  <b style="color: #483C32">Select action below</b>
+     <div class="btn-group" role="group" aria-label="Basic outlined example">
+     
+      <a href="{%url 'workupdate' transaction.id%}" class="btn btn-outline-primary btn-sm mybuttons">Add work details</a>
+
+      <a href="{%url 'familyupdate' transaction.id%}" class="btn btn-outline-primary btn-sm mybuttons">Add family details</a>
+   
+
+     <button class="btn btn-success btn-sm" onclick="printreport()" id="printbutton">Download form</button>
+     
+       
+  </div>
+</div>
+</div>
+
+<br>
+<div class="parent-div">
+  <div class="card mycard">
+    <div class="btn-group" role="group" aria-label="Basic outlined example">
+    
+  
+    <a href="{%url 'detailspage1' transaction.id%}" class="btn btn-outline-dark btn-sm ">Previous section</a>
+   <a href="{%url 'loans'%}" class="btn btn-outline-primary btn-sm ">Home</a>
+         
+    </div>
+  </div>
+  </div>
+
+
+
+<script type="text/javascript">
+    
+    function printreport(){
+        const report = document.getElementById("form")
+        const mybutton = document.getElementById("printbutton")
+        mybutton.innerText ="Downloading"
+        idNumber = '{{transaction.id_number}}'
+        html2pdf() 
+        .from(report)
+        .save(idNumber + "Loan form")
+        
+        setTimeout(function(){ 
+            mybutton.innerText ="Download finished" 
+            
+        
+        
+        }, 7000);
+
+
+        setTimeout(function(){ 
+           location.reload()
+            
+        
+        
+        }, 6000);
+        
+    
+        
+        
+ }
+ 
+
+</script>
+
+{%endblock%}
+
+

@@ -1,0 +1,56 @@
+{%extends 'index.html'%}
+{%load crispy_forms_tags%}
+
+{%block content%}
+
+
+<div class="parent-div">
+    <div class="card">
+        <div class="card-header" style="background-color: #4267B2; color: snow;">
+            <b>Clear or approve loan</b>
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+                <small>Clearing will not delete loan from the system.</small> <br>
+                <small>To clear ,change status to "cleared".</small> <br>
+                <small>To approve ,change status to "approved"</small> 
+
+                {%csrf_token%}
+                <fieldset class="form-group">
+
+
+
+                    {{form|crispy}}
+                </fieldset>
+                <br>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary btn-block mybuttons " type="submit" id="submitbutton" onclick="feedback()">Submit information
+                        </button>
+
+                        <br>
+                        <a href="{%url 'loans'%}" class="btn btn-outline-primary  btn-block mybuttons"><b>Cancel</b></a>
+            
+
+                </div>
+            </form>
+
+            
+        </div>
+        <script type="text/javascript">
+    
+          function feedback(){
+              
+              const mybutton = document.getElementById("submitbutton")
+              mybutton.innerText ="Submitting"
+
+           
+              
+    }
+        
+        
+        </script>
+            
+{%endblock%}
+

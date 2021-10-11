@@ -1,0 +1,241 @@
+{%extends  'index.html'%}
+{%load static%}
+{%load humanize%}
+{%block content%}
+{%load crispy_forms_tags%}
+<!-- STAFF SECTION -->
+{%if user.is_staff%}
+ <div class="card input-group ">
+    <form action="{%url 'search'%}"  method="get" class="d-flex">
+     <input type="text" class="form-control" placeholder="search by id number/name" name="q"  aria-describedby="button-addon2" aria-label="Search">
+    
+     <button class="btn btn-primary btn-sm" type="submit" id="button-addon2">Search</button>
+         
+   </form>
+</div>
+
+
+   
+     <hr>
+
+     <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <a href="" class="btn btn-outline-dark btn-sm disabled" aria-disabled="true"><b style="color: black;">LOANS</b></a>
+        <a href="{%url 'create-loan'%}" class="btn btn-primary btn-sm">Apply loan</a>
+        <a href="" class="btn btn-outline-primary btn-sm disabled" aria-disabled="true"></a>
+        <a href="{%url 'photos'%}" class="btn btn-outline-primary btn-sm">Photos</a>
+        <a href="{%url 'guarantors'%}" class="btn btn-outline-primary btn-sm">Guarantors</a>
+     
+    </div>
+    
+    
+  
+  <br>
+  <br>
+  
+       <table class="table  table-sm table-bordered table-hover bodystyle display" id="table_id">
+
+               <thead>
+               <tr>
+
+                   <th scope="col">Application date</th>
+                   <th scope="col">Name</th>
+                   <th scope="col">Id.no</th>
+                   <th scope="col">Loan applied</th>
+                   <th scope="col">Finish loan application</th>
+                   <th scope="col">Clear/approve loan</th>
+                 
+
+
+
+
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+               {%for transaction in transactions%}
+               {%if transaction.status != "cleared"%}
+               <td data-label="Application date">{{transaction.lending_date|date:'j b,y'}}</td>
+                <td data-label="Full name">{{transaction.full_name}}</td>
+                <td data-label="Id number">{{transaction.id_number}}</td>
+                <td data-label="Applied amount">{{transaction.loan_amount|intcomma}}</td>
+                
+                <td data-label="Finish loan application">
+                <a href="{%url 'detailspage1' transaction.id%}" class="btn btn-outline-dark btn-sm" style="font-size: small;">Finish</a>
+                </td>
+                
+                <td data-label="Clear/approve loan">
+                    <a href="{%url 'clear' transaction.id%}" class="btn btn-outline-primary btn-sm" style="font-size: small;">clear/approve</a>
+                    </td>
+              
+             
+                
+
+               </tr>
+
+
+
+           </tbody>
+           {%endif%}
+
+           {%endfor%}
+       </table>
+  
+
+
+   <br>
+
+ <nav aria-label="Page navigation example">
+   <ul class="pagination">
+       {%if is_paginated%}
+
+       {%if page_obj.has_previous%}
+
+
+               <li class="page-item"><a href="?page=1" class="page-link">first</a></li>
+               <li class="page-item"><a href="?page={{page_obj.previous_page_number}}"class="page-link">previous</a></li>
+
+               {%endif%}
+
+               {%for num in page_obj.paginator.page_range%}
+
+               {%if page_obj.number == num%}
+
+               <li class="page-item"><a href="?page={{num}}" class="page-link">{{num}}</a></li>
+               {%elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3'%} <li class="page-item"><a href="?page={{num}}"
+
+                   class="page-link">{{num}}</a></li>
+
+                   {%endif%}
+                   {%endfor%}
+
+                   {%if page_obj.has_next%}
+
+               <li class="page-item"><a href="?page={{page_obj.next_page_number}}"  class="page-link">next</a></li>
+
+               <li class="page-item"><a href="?page={{page_obj.paginator.num_pages}}"
+                   class="page-link">last</a></li>
+
+                   {%endif%}
+
+                   {%endif%}
+       </ul>
+</nav>
+
+ <hr>
+
+
+<b style="color: #483C32">Select action below</b>
+<div class="card mycard">
+
+     <div class="btn-group" role="group" aria-label="Basic outlined example">
+ <a href="" class="btn btn-outline-primary btn-sm mybuttons">Mpesa repayments</a>
+  <a href="{%url 'cleared-loans'%}" class="btn btn-outline-primary btn-sm mybuttons">Cleared loans</a>
+     <a href="{%url 'loans'%}" class="btn btn-outline-primary btn-sm mybuttons">Refresh</a>
+     
+     <button class="btn btn-outline-dark btn-sm" type="button" id="installApp">Install app</button>
+   
+
+
+</div>
+</div>
+
+
+          <!-- CLIENTS SECTION============= -->
+           {%else%}
+             <div class="card">
+             <div class="card-header" style="background: snow">
+             <h4>Welcome {{user.username}}</h4>
+             <small>1.Fill the loan form only once on the actual loan day.</small> 
+             </div>
+            
+             </div>
+
+              <hr>
+              
+               <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <a href="" class="btn btn-outline-dark btn-sm disabled" aria-disabled="true"><b style="color: black;">LOANS</b></a>
+                <a href="{%url 'create-loan'%}" class="btn btn-primary btn-sm">Apply loan</a>
+                <a href="" class="btn btn-outline-primary btn-sm disabled" aria-disabled="true"></a>
+                <a href="{%url 'photos'%}" class="btn btn-outline-primary btn-sm">Photos</a>
+                <a href="{%url 'guarantors'%}" class="btn btn-outline-primary btn-sm">Guarantors</a>
+             
+            </div>
+         <br>
+          <br>
+
+               <table class="table  table-sm table-bordered table-hover bodystyle" id="tbl_exporttable_to_xls">
+
+                       <thead>
+                       <tr>
+
+                           <th scope="col">Application date</th>
+                           <th scope="col">Name</th>
+                           <th scope="col">Id.no</th>
+                           <th scope="col">Loan applied </th>
+
+                           <!-- <th scope="col">Status</th> -->
+
+                           <th scope="col">Finish loan application</th>
+
+
+
+
+                       </tr>
+                       </thead>
+                       <tbody>
+                       <tr>
+                       {%for transaction in transactions%}
+                       {%if user.id_number == transaction.id_number and transaction.status != "cleared"%}
+
+                       <td data-label="Application date">{{transaction.lending_date|date:'j b,y'}}</td>
+                        <td data-label="Full name">{{transaction.full_name}}</td>
+                        <td data-label="Id number">{{transaction.id_number}}</td>
+                        <td data-label="Applied amount">{{transaction.loan_amount|intcomma}}</td>
+
+
+                        <!-- <td data-label="Status">{{transaction.status}}</td> -->
+
+                        <td data-label="Finish loan application">
+                            <a href="{%url 'detailspage1' transaction.id%}" class="btn btn-primary btn-sm" style="font-size: small;">Finish</a>
+                            </td>
+
+                       </tr>
+                   </tbody>
+
+               
+                  {%endif%}
+                  {%endfor%}
+               </table>
+
+
+          <!-- pagination here -->
+           
+        <hr>
+        <b style="color: #483C32">Select action below</b>
+<div class="card mycard">
+
+     <div class="btn-group" role="group" aria-label="Basic outlined example">
+
+
+
+       
+     <a href="{%url 'loans'%}" class="btn btn-outline-primary btn-sm mybuttons">Refresh</a>
+               
+     <button class="btn btn-outline-dark btn-sm" type="button" id="installApp" >Install app</button>
+   
+    
+
+</div>
+</div>
+
+
+
+
+
+
+ {%endif%}
+{%endblock%}
+
+
+
+  

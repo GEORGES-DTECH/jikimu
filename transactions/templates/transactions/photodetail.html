@@ -1,0 +1,116 @@
+
+{%extends 'index.html'%}
+{% load static %}
+{%load crispy_forms_tags%}
+{%load humanize%}
+{%block content%}
+<div class="parent-div">
+
+    <div class="card mycard">
+     
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+       
+            <button class="btn btn-success btn-sm" onclick="printreport()" id="printbutton">Download form</button>
+            <a href="{%url 'photos'%}" class="btn btn-outline-primary btn-sm mybuttons">Home</a>
+          
+    </div>
+    </div>
+</div>
+<br>
+<div class="parent-div" id="form">
+
+    <div class="loancard" style="background: snow; color: #0e4D92;">
+        <div class="card-header align-items-center" style="background: floralwhite;">
+            <img src="{% static 'images/512pn.png '%}" height="80" width="80" class="d-inline-block-alighn-top" />  <b style="font-size: x-large;">PROVIDA AFRICA LIMITED </b>
+            <div>Thika town,p.o box 2359 -00900,kiambu</div>
+            <div>Telephone 0202078812/0717808681,Email providaafrica@gmail.com</div>
+            <div>Website,providaafrica.com</div>
+            
+            <b style="font-size: large;">NAME:{{photo.full_name}}</b> <br>
+            <b style="font-size: large;">ID NUMBER:{{photo.id_number}}</b>  <br>
+            
+
+          
+
+        </div>
+    <div class="card-body" style="background: snow;">
+       
+        <div class="row g-2">
+            <div class="col-sm-4">
+                
+                    
+                    <img src="{{photo.upload_passport_photo.url}}" class="card-img-top" alt="" width="95" height="250">
+                    
+                    <div class="card-tile">Passport</div>
+              
+                </div>
+            
+            
+           <div class="col-sm-4">
+             
+                <img src="{{photo.upload_id_front.url}}" class="card-img-top" alt="" width="95" height="250">
+                    
+                    <div class="card-tile">Id front</div>
+                
+            
+         
+          </div>
+
+
+          <div class="col-sm-4">
+           
+             
+                <img src="{{photo.upload_id_back.url}}" class="card-img-top" alt="" width="200" height="250">
+                    
+                Id back
+            
+          
+          
+        </div>
+
+    </div>  
+   
+
+
+
+</div>
+</div>
+
+<script type="text/javascript">
+    
+    function printreport(){
+        const report = document.getElementById("form")
+        const mybutton = document.getElementById("printbutton")
+        mybutton.innerText ="Downloading"
+        idNumber = '{{photo.id_number}}'
+        html2pdf() 
+        .from(report)
+        .save(idNumber + "Photos")
+        
+        setTimeout(function(){ 
+            mybutton.innerText ="Download finished" 
+            
+        
+        
+        }, 5000);
+
+
+        setTimeout(function(){ 
+           location.reload()
+            
+        
+        
+        }, 6000);
+
+
+    
+        
+        
+ }
+ 
+
+</script>
+
+{%endblock%}
+
+

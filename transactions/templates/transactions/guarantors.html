@@ -1,0 +1,204 @@
+{%extends  'index.html'%}
+{%load static%}
+{%load humanize%}
+{%block content%}
+{%load crispy_forms_tags%}
+<!-- STAFF SECTION -->
+{%if user.is_staff%}
+
+
+<div class="card">
+    <form action=""  method="get" class="d-flex" >
+   
+
+        <input type="text" class="form-control" placeholder="search by id number/name" name="q"  aria-describedby="button-addon2" aria-label="Search">
+    
+        <button class="btn btn-primary btn-sm" type="submit" id="button-addon2">Search</button>
+  
+    </form>
+</div>
+
+   
+     <hr>
+
+     <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <a href="" class="btn btn-outline-dark btn-sm disabled" aria-disabled="true"><b style="color: black;">GUARANTORS</b></a>
+        <a href="{%url 'add-guarantor'%}" class="btn btn-primary btn-sm">Add details</a>
+        <a href="" class="btn btn-outline-primary btn-sm disabled" aria-disabled="true"></a>
+        <a href="{%url 'guarantors'%}" class="btn btn-outline-primary btn-sm mybuttons">Refresh</a>
+        <a href="{%url 'loans'%}" class="btn btn-outline-primary btn-sm">Back to loans</a>
+       
+    </div>
+    
+    
+  
+  <br>
+  <br>
+
+       <table class="table  table-sm table-bordered table-hover bodystyle" id="tbl_exporttable_to_xls">
+
+               <thead>
+               <tr>
+
+                   <th scope="col">Date</th>
+                   <th scope="col">Borrower</th>
+                   <th scope="col">Guarantor</th>
+                   <th scope="col">Guarantors id</th>
+                   <th scope="col">Guarantors amount</th>
+                   <th scope="col">Borrowers amount</th>
+                   <th scope="col">View form</th>
+                 
+
+
+
+
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+               {%for transaction in transactions%}
+               
+               <td data-label="Date">{{transaction.date|date:'j b,y'}}</td>
+                <td data-label="Borrower">{{transaction.borrowers_full_name}}</td>
+                <td data-label="Guarantor">{{transaction.guarantors_name}}</td>
+                <td data-label="Guarantors id">{{transaction.guarantors_id_number}}</td>
+                <td data-label="Guarantors amount">{{transaction.guarantors_amount}}</td>
+                <td data-label="Borrowers loan">{{transaction.borrowers_loan_amount}}</td>
+                
+                <td data-label="View form">
+                <a href="{%url 'guarantor-detail' transaction.id%}" class="btn btn-outline-primary btn-sm" style="font-size: small;">View</a>
+                </td>
+                
+                
+             
+                
+
+               </tr>
+
+
+
+           </tbody>
+         
+
+           {%endfor%}
+       </table>
+
+
+
+   <br>
+
+ <nav aria-label="Page navigation example">
+   <ul class="pagination">
+       {%if is_paginated%}
+
+       {%if page_obj.has_previous%}
+
+
+               <li class="page-item"><a href="?page=1" class="page-link">first</a></li>
+               <li class="page-item"><a href="?page={{page_obj.previous_page_number}}"class="page-link">previous</a></li>
+
+               {%endif%}
+
+               {%for num in page_obj.paginator.page_range%}
+
+               {%if page_obj.number == num%}
+
+               <li class="page-item"><a href="?page={{num}}" class="page-link">{{num}}</a></li>
+               {%elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3'%} <li class="page-item"><a href="?page={{num}}"
+
+                   class="page-link">{{num}}</a></li>
+
+                   {%endif%}
+                   {%endfor%}
+
+                   {%if page_obj.has_next%}
+
+               <li class="page-item"><a href="?page={{page_obj.next_page_number}}"  class="page-link">next</a></li>
+
+               <li class="page-item"><a href="?page={{page_obj.paginator.num_pages}}"
+                   class="page-link">last</a></li>
+
+                   {%endif%}
+
+                   {%endif%}
+       </ul>
+</nav>
+
+ <hr>
+
+
+
+
+          <!-- CLIENTS SECTION============= -->
+           {%else%}
+
+              
+     <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <a href="" class="btn btn-outline-dark btn-sm disabled" aria-disabled="true"><b style="color: black;">GUARANTOR</b></a>
+        <a href="{%url 'add-guarantor'%}" class="btn btn-primary btn-sm">Add details</a>
+        <a href="" class="btn btn-outline-primary btn-sm disabled" aria-disabled="true"></a>
+        <a href="{%url 'guarantors'%}" class="btn btn-outline-primary btn-sm mybuttons">Refresh</a>
+        <a href="{%url 'loans'%}" class="btn btn-outline-primary btn-sm">Back to loans</a>
+      
+    </div>
+         <hr>
+
+          <table class="table  table-sm table-bordered table-hover bodystyle" id="tbl_exporttable_to_xls">
+
+            <thead>
+            <tr>
+
+                <th scope="col">Date</th>
+                <th scope="col">Borrowers</th>
+                <th scope="col">Guarantor</th>
+                <th scope="col">Guarantors id</th>
+                <th scope="col">Guarantors amount</th>
+                <th scope="col">Borrowers amount</th>
+                <th scope="col">View form</th>
+              
+              
+
+
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            {%for transaction in transactions%}
+            {%if transaction.guarantors_id_number == user.id_number%}
+            <td data-label="Application date">{{transaction.date|date:'j b,y'}}</td>
+                <td data-label="Borrower">{{transaction.borrowers_full_name}}</td>
+                <td data-label="Guarantor">{{transaction.guarantors_name}}</td>
+                <td data-label="Guarantors id">{{transaction.guarantors_id_number}}</td>
+                <td data-label="Guarantors amount">{{transaction.guarantors_amount}}</td>
+                <td data-label="Borrowers loan">{{transaction.borrowers_loan_amount}}</td>
+                
+                <td data-label="View form">
+                <a href="{%url 'guarantor-detail' transaction.id%}" class="btn btn-outline-dark btn-sm" style="font-size: small;">View</a>
+                </td>
+                
+             
+             
+          
+             
+
+            </tr>
+
+
+
+        </tbody>
+        {%endif%}
+
+        {%endfor%}
+    </table>
+
+           
+        <hr>
+      
+{%endif%}
+{%endblock%}
+
+
+
+  
